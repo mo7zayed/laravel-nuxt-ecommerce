@@ -42,6 +42,8 @@ export default {
     '@nuxtjs/bulma',
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
+    // Doc: https://auth.nuxtjs.org/
+    '@nuxtjs/auth',
     '@nuxtjs/pwa',
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv',
@@ -51,7 +53,39 @@ export default {
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
+      baseURL: 'http://127.0.0.1:8000/',
   },
+
+  /*
+  ** Auth module configuration
+  ** See https://auth.nuxtjs.org/guide/setup.html
+  */
+  auth: {
+      strategies: {
+          local: {
+              login: {
+                  url: 'auth/login',
+                  method: 'POST',
+                  propertyName: 'access_token',
+              },
+              register: {
+                  url: 'auth/register',
+                  method: 'POST',
+                  propertyName: 'access_token',
+              },
+              user: {
+                  url: 'auth/user',
+                  method: 'get',
+                  propertyName: 'user',
+              },
+              logout: {
+                  url: 'auth/logout',
+                  method: 'POST',
+              },
+          },
+      },
+  },
+
   /*
   ** Build configuration
   */

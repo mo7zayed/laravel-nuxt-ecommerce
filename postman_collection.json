@@ -1,0 +1,231 @@
+{
+	"info": {
+		"_postman_id": "e1b056ff-3bd5-41aa-8544-45c8a9134499",
+		"name": "Laravel-Nuxt-Auth",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-Requested-With",
+								"value": "XMLHttpRequest",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"mohamed.zayed@app.com\",\n\t\"password\": \"123456\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/{{prefix}}/auth/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{prefix}}",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Requested-With",
+								"type": "text",
+								"value": "XMLHttpRequest"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Mohamed\",\n\t\"email\": \"mohamed.zayed.2@app.com\",\n\t\"password\": \"123456\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/{{prefix}}/auth/register",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{prefix}}",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Me",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Requested-With",
+								"type": "text",
+								"value": "XMLHttpRequest"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/{{prefix}}/auth/user",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{prefix}}",
+								"auth",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Requested-With",
+								"type": "text",
+								"value": "XMLHttpRequest"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/{{prefix}}/auth/logout",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{prefix}}",
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Refresh",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Requested-With",
+								"type": "text",
+								"value": "XMLHttpRequest"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/{{prefix}}/auth/refresh",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{prefix}}",
+								"auth",
+								"refresh"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "d1fe81da-8f43-4e65-8b87-e13d0f51c924",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "2afa6b57-8c4f-43b6-b13e-576cce4d0aa4",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "a3ccbc88-3c20-4440-885d-1afeea822bed",
+			"key": "url",
+			"value": "http://127.0.0.1:8000",
+			"type": "string"
+		},
+		{
+			"id": "992f21fa-9b8a-4c1e-adad-bb30f0fb9b4a",
+			"key": "prefix",
+			"value": "api",
+			"type": "string"
+		},
+		{
+			"id": "9438f96c-dd6e-4076-98e2-a4d64f4d18c7",
+			"key": "token",
+			"value": "Bearer TokenHere",
+			"type": "string"
+		}
+	],
+	"protocolProfileBehavior": {}
+}
