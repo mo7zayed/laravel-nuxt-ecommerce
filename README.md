@@ -1,5 +1,5 @@
-# Laravel & Nuxt Authintication.
-    this is a simple laravel & nuxt authentication app i'm using jwt for token generation and bulma as css framework.
+# Laravel & Nuxt Ecommerce.
+    this is a simple laravel & nuxt ecommerce app i'm using jwt for token generation and bulma as css framework.
 
 ## Structure
     - this is a normal laravel app but i added a directory "client" in the base path that contains nuxtjs app.

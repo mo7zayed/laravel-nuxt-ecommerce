@@ -1,5 +1,7 @@
 <template>
-  <p>Register</p>
+    <div class="container">
+        test
+    </div>
 </template>
 
 <script>

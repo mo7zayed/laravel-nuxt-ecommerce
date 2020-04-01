@@ -1,12 +1,12 @@
 <template>
     <div>
-        <navbar />
+        <Navbar />
         <nuxt />
     </div>
 </template>
 
 <script>
-import Navbar from './partials/Navbar.vue';
+import Navbar from '@/layouts/partials/Navbar'
 
 export default {
     components: {

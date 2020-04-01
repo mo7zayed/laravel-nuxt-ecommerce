@@ -1,25 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\API\Auth;
+namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Helpers\Http\Respond;
-use App\User;
+use App\Models\User;
 
 class AuthController extends Controller
 {
-    /**
-     * Create a new AuthController instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth:api', ['except' => ['login', 'register']]);
-    }
-
     /**
      * Get a JWT via given credentials.
      *
@@ -65,8 +55,10 @@ class AuthController extends Controller
     public function authenticate($credentials)
     {
         if (! $token = auth()->attempt($credentials)) {
-            return response()->json(['message' => 'Validation Error'], false, 422, [
-                'email' => __('auth.failed'),
+            return Respond::make(['message' => 'Validation Error'], false, 422, [
+                'email' => [
+                    __('auth.failed'),
+                ],
             ]);
         }
 
@@ -78,9 +70,9 @@ class AuthController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function user()
+    public function me()
     {
-        return response()->json(['user' => auth()->user()]);
+        return Respond::make(['user' => auth()->user()]);
     }
 
     /**
@@ -92,7 +84,7 @@ class AuthController extends Controller
     {
         auth()->logout();
 
-        return response()->json(['message' => 'Successfully logged out']);
+        return Respond::make(['message' => 'Successfully logged out']);
     }
 
     /**
@@ -114,8 +106,8 @@ class AuthController extends Controller
      */
     protected function respondWithToken($token)
     {
-        return response()->json([
-            'token' => $token,
+        return Respond::make([
+            'access_token' => $token,
             'token_type' => 'bearer',
             'expires_in' => auth()->factory()->getTTL() * 60
         ]);

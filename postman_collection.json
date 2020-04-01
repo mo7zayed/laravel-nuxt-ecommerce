@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "e1b056ff-3bd5-41aa-8544-45c8a9134499",
-		"name": "Laravel-Nuxt-Auth",
+		"name": "Laravel-Nuxt-Ecommerce",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -60,7 +60,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\": \"Mohamed\",\n\t\"email\": \"mohamed.zayed.2@app.com\",\n\t\"password\": \"123456\"\n}"
+							"raw": "{\n\t\"name\": \"Mohamed\",\n\t\"email\": \"mohamed.zayed@app.com\",\n\t\"password\": \"123456\"\n}"
 						},
 						"url": {
 							"raw": "{{url}}/{{prefix}}/auth/register",
@@ -79,7 +79,7 @@
 				{
 					"name": "Me",
 					"request": {
-						"method": "GET",
+						"method": "POST",
 						"header": [
 							{
 								"key": "Content-Type",
@@ -98,14 +98,14 @@
 							}
 						],
 						"url": {
-							"raw": "{{url}}/{{prefix}}/auth/user",
+							"raw": "{{url}}/{{prefix}}/auth/me",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"{{prefix}}",
 								"auth",
-								"user"
+								"me"
 							]
 						}
 					},
@@ -209,19 +209,19 @@
 	],
 	"variable": [
 		{
-			"id": "a3ccbc88-3c20-4440-885d-1afeea822bed",
+			"id": "006e8a13-1b32-44c1-9085-04855a310c44",
 			"key": "url",
 			"value": "http://127.0.0.1:8000",
 			"type": "string"
 		},
 		{
-			"id": "992f21fa-9b8a-4c1e-adad-bb30f0fb9b4a",
+			"id": "d5dbf137-6aef-4f2f-814b-b2b30b829d57",
 			"key": "prefix",
 			"value": "api",
 			"type": "string"
 		},
 		{
-			"id": "9438f96c-dd6e-4076-98e2-a4d64f4d18c7",
+			"id": "aeee0143-98d6-4a33-82eb-4805c7f7077a",
 			"key": "token",
 			"value": "Bearer TokenHere",
 			"type": "string"

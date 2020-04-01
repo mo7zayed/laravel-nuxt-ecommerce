@@ -14,11 +14,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::post('login', 'Auth\AuthController@login');
+Route::post('register', 'Auth\AuthController@register');
+
 Route::group(['middleware' => 'api', 'prefix' => 'auth'], function ($router) {
     // JWT auth uri's
-    Route::post('login', 'API\Auth\AuthController@login');
-    Route::post('register', 'API\Auth\AuthController@register');
-    Route::post('logout', 'API\Auth\AuthController@logout');
-    Route::post('refresh', 'API\Auth\AuthController@refresh');
-    Route::get('user', 'API\Auth\AuthController@user');
+    Route::post('logout', 'Auth\AuthController@logout');
+    Route::post('refresh', 'Auth\AuthController@refresh');
+    Route::post('me', 'Auth\AuthController@me');
 });
+
+Route::resource('categories', 'Categories\CategoriesController');
+Route::resource('products', 'Products\ProductsController');

@@ -1,34 +1,47 @@
 <template>
-    <nav class="navbar" role="navigation" aria-label="main navigation">
-        <div class="navbar-brand">
-            <nuxt-link to="/" class="navbar-item">
-                <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
-            </nuxt-link>
-
-            <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-            </a>
-        </div>
-
-        <div id="navbarBasicExample" class="navbar-menu">
-            <div class="navbar-start">
+    <nav class="navbar is-dark">
+        <div class="container">
+            <div class="navbar-brand">
                 <nuxt-link to="/" class="navbar-item">
-                    Home
+                    Ecommerce
                 </nuxt-link>
+                <div class="navbar-burger burger" data-target="nav">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
             </div>
 
-            <div class="navbar-end">
-                <div class="navbar-item">
-                    <div class="buttons">
-                        <nuxt-link to="/auth/register" class="button is-primary">
-                            <strong>Sign up</strong>
+            <div class="navbar-start">
+                <template v-for="category in categories">
+                    <template v-if="category.children.length">
+                        <div class="navbar-item has-dropdown is-hoverable" :key="category.slug">
+                            <nuxt-link :to="{ name: 'categories-slug', params: { slug: category.slug } }" class="navbar-link">
+                                {{ category.name }}
+                            </nuxt-link>
+
+                            <div class="navbar-dropdown">
+                                <template v-for="c in category.children">
+                                    <nuxt-link :key="c.slug" :to="{ name: 'categories-slug', params: { slug: c.slug } }" class="navbar-item">
+                                        {{ c.name }}
+                                    </nuxt-link>
+                                </template>
+                            </div>
+                        </div>
+                    </template>
+                    <template v-else>
+                        <nuxt-link :key="category.slug" :to="{ name: 'categories-slug', params: { slug: category.slug } }" class="navbar-item">
+                            {{ category.name }}
                         </nuxt-link>
-                        <nuxt-link to="/auth/login" class="button is-light">
-                            <strong>Login</strong>
-                        </nuxt-link>
-                    </div>
+                    </template>
+                </template>
+            </div>
+
+            <div id="nav" class="navbar-menu">
+                <div class="navbar-end">
+                    <nuxt-link to="/login" class="navbar-item">
+                        Login
+                    </nuxt-link>
                 </div>
             </div>
         </div>
@@ -36,7 +49,13 @@
 </template>
 
 <script>
-    export default {
+    import { mapGetters } from 'vuex'
 
+    export default {
+        computed: {
+            ...mapGetters({
+                categories: 'categories',
+            }),
+        },
     }
 </script>
