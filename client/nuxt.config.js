@@ -18,7 +18,7 @@ export default {
     /*
     ** Customize the progress-bar color
     */
-    loading: { color: '#fff' },
+    loading: { color: '#27aac7' },
     /*
     ** Global CSS
     */
@@ -46,7 +46,7 @@ export default {
         // Doc: https://auth.nuxtjs.org
         '@nuxtjs/auth',
     ],
-    
+
     /*
     ** Axios module configuration
     ** See https://axios.nuxtjs.org/options
@@ -54,7 +54,7 @@ export default {
     axios: {
         baseURL: 'http://127.0.0.1:8000/api/',
     },
-    
+
     /*
     ** Auth module configuration
     ** See https://auth.nuxtjs.org/guide/setup.html
@@ -79,7 +79,7 @@ export default {
             },
         },
     },
-    
+
     /*
     ** Build configuration
     */
@@ -98,4 +98,3 @@ export default {
         }
     }
 }
-

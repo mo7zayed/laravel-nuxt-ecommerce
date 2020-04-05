@@ -2,7 +2,10 @@
 
 use Illuminate\Database\Seeder;
 use App\Models\Product;
+use App\Models\ProductVariationType;
 use App\Models\Category;
+use App\Models\ProductVariation;
+use App\Models\Stock;
 
 class ApplicationSeeder extends Seeder
 {
@@ -25,10 +28,40 @@ class ApplicationSeeder extends Seeder
 
         factory(Product::class, 100)->create();
 
-        foreach (Product::all() as $product) {
+        factory(ProductVariationType::class, 3)->create();
+
+        foreach (Product::all() as $key => $product) {
             $product->categories()->attach(
                 Category::select('id')->inRandomOrder()->take(3)->get()->pluck('id')->toArray()
             );
+
+
+            factory(ProductVariation::class)->create([
+                'name' => 'v1',
+                'product_id' => $product->id,
+                'product_variation_type_id' => ProductVariationType::select('id')->inRandomOrder()->first()->id,
+            ]);
+            factory(ProductVariation::class)->create([
+                'name' => 'v2',
+                'product_id' => $product->id,
+                'product_variation_type_id' => ProductVariationType::select('id')->inRandomOrder()->first()->id,
+            ]);
+            factory(ProductVariation::class)->create([
+                'name' => 'v3',
+                'product_id' => $product->id,
+                'product_variation_type_id' => ProductVariationType::select('id')->inRandomOrder()->first()->id,
+            ]);
+            factory(ProductVariation::class)->create([
+                'name' => 'v4',
+                'product_id' => $product->id,
+                'product_variation_type_id' => ProductVariationType::select('id')->inRandomOrder()->first()->id,
+            ]);
+
+            foreach ($product->variations as $v) {
+                $v->stocks()->create([
+                    'quantity' => 10,
+                ]);
+            }
         }
     }
 }

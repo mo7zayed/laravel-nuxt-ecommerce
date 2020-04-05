@@ -3,8 +3,9 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Collection;
 
-class ProductIndexResource extends JsonResource
+class ProductVariationResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -14,15 +15,17 @@ class ProductIndexResource extends JsonResource
      */
     public function toArray($request)
     {
+        if ($this->resource instanceof Collection) {
+            return ProductVariationResource::collection($this->resource);
+        }
+
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'slug' => $this->slug,
-            'description' => $this->description,
             'price' => $this->formattedPrice,
+            'is_price_varies' => $this->isPriceVaries(),
             'stock_count' => $this->stockCount(),
             'in_stock' => $this->inStock(),
-            'created_at' => $this->created_at->diffForHumans(),
         ];
     }
 }

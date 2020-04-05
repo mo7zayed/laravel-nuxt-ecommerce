@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Models\Traits;
 
 trait IsOrderable

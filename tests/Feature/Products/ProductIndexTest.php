@@ -9,11 +9,6 @@ use App\Models\Product;
 
 class ProductIndexTest extends TestCase
 {
-    /**
-     * test_it_returns_a_collection_of_products
-     *
-     * @return void
-     */
     public function test_it_returns_a_collection_of_products()
     {
         $products = factory(Product::class, 5)->create();

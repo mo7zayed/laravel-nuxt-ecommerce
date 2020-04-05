@@ -14,8 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('login', 'Auth\AuthController@login');
-Route::post('register', 'Auth\AuthController@register');
+Route::post('auth/login', 'Auth\AuthController@login');
+Route::post('auth/register', 'Auth\AuthController@register');
 
 Route::group(['middleware' => 'api', 'prefix' => 'auth'], function ($router) {
     // JWT auth uri's

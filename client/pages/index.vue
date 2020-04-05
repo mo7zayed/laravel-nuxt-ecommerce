@@ -1,14 +1,12 @@
 <template>
-  <div>
-    Home
-  </div>
+  <section>
+      <div class="container">
+          Home
+      </div>
+  </section>
 </template>
 
 <script>
 export default {
 }
 </script>
-
-<style>
-
-</style>
