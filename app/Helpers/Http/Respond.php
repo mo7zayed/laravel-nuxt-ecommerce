@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Helpers\Http;
+
 use Illuminate\Http\JsonResponse;
 
 class Respond

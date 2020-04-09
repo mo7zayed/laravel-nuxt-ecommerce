@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use AjCastro\EagerLoadPivotRelations\EagerLoadPivotTrait;
 use App\Cart\Money;
 use App\Models\Traits\HasPrice;
 use Illuminate\Database\Eloquent\Model;

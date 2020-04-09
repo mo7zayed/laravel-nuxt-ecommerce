@@ -4,7 +4,6 @@ namespace Tests\Unit\Models\Products;
 
 use App\Cart\Money;
 use Tests\TestCase;
-use App\Models\Stock;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\ProductVariation;

@@ -8,7 +8,6 @@ use App\Models\Category;
 
 class CategoryTest extends TestCase
 {
-
     public function test_it_has_many_childern()
     {
         $category = factory(Category::class)->create();

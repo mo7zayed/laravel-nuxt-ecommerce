@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Kalnoy\Nestedset\NodeTrait;
 use App\Models\Traits\IsOrderable;
 
-
 class Category extends Model
 {
     use NodeTrait, IsOrderable;

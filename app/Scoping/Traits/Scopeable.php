@@ -13,7 +13,7 @@ trait Scopeable
      *
      * @param  Builder $builder
      * @param  array   $scopes.
-     * 
+     *
      * @return Builder
      */
     public function scopeWithScopes(Builder $builder, array $scopes = []) : Builder

@@ -8,7 +8,6 @@ use App\Http\Resources\ProductResource;
 use App\Helpers\Http\Respond;
 use App\Models\Product;
 use App\Scoping\Scopes\CategoryScope;
-use Illuminate\Http\Request;
 
 class ProductsController extends Controller
 {
@@ -19,7 +18,7 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        $index = Product::withScopes($this->scopes())->paginate(10);
+        $index = Product::withScopes($this->scopes())->paginate(20);
 
         return Respond::make(
             ProductIndexResource::collection($index)
@@ -34,7 +33,7 @@ class ProductsController extends Controller
     public function show(Product $product)
     {
         $product->load(['variations.type', 'variations.stock', 'variations.product']);
-        
+
         return Respond::make(
             new ProductResource($product)
         );

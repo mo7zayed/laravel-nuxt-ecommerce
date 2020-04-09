@@ -39,9 +39,33 @@
 
             <div id="nav" class="navbar-menu">
                 <div class="navbar-end">
-                    <nuxt-link to="/login" class="navbar-item">
-                        Login
-                    </nuxt-link>
+                    <template v-if="!$auth.loggedIn">
+                        <nuxt-link to="/login" class="navbar-item">
+                            Login
+                        </nuxt-link>
+                        <nuxt-link to="/register" class="navbar-item">
+                            Register
+                        </nuxt-link>
+                    </template>
+                    <template v-else>
+                        <a href="#" @click.prevent class="navbar-item">
+                            Orders
+                        </a>
+                        <a href="#" @click.prevent class="navbar-item">
+                            Cart (0)
+                        </a>
+                        <div class="navbar-item has-dropdown is-hoverable">
+                            <a href="#" @click.prevent class="navbar-link">
+                                {{ $auth.user.name }}
+                            </a>
+
+                            <div class="navbar-dropdown">
+                                <a href="#" @click.prevent="logout()" class="navbar-item">
+                                    Logout
+                                </a>
+                            </div>
+                        </div>
+                    </template>
                 </div>
             </div>
         </div>
@@ -56,6 +80,11 @@
             ...mapGetters({
                 categories: 'categories',
             }),
+        },
+        methods: {
+            logout() {
+                this.$auth.logout()
+            }
         },
     }
 </script>

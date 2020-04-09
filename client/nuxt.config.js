@@ -62,19 +62,21 @@ export default {
     auth: {
         strategies: {
             local: {
-                login: {
-                    url: 'auth/login',
-                    method: 'POST',
-                    propertyName: 'payload.access_token',
-                },
-                user: {
-                    url: 'auth/me',
-                    method: 'POST',
-                    propertyName: 'payload.user',
-                },
-                logout: {
-                    url: 'auth/logout',
-                    method: 'POST',
+                endpoints: {
+                    login: {
+                        url: 'auth/login',
+                        method: 'POST',
+                        propertyName: 'payload.access_token',
+                    },
+                    user: {
+                        url: 'auth/me',
+                        method: 'POST',
+                        propertyName: 'payload.user',
+                    },
+                    logout: {
+                        url: 'auth/logout',
+                        method: 'POST',
+                    },
                 },
             },
         },

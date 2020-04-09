@@ -4,7 +4,6 @@ namespace App\Models\Traits;
 
 use App\Cart\Money;
 
-
 trait HasPrice
 {
     /**

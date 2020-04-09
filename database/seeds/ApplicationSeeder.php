@@ -5,7 +5,6 @@ use App\Models\Product;
 use App\Models\ProductVariationType;
 use App\Models\Category;
 use App\Models\ProductVariation;
-use App\Models\Stock;
 
 class ApplicationSeeder extends Seeder
 {
@@ -18,13 +17,14 @@ class ApplicationSeeder extends Seeder
     {
         factory(Category::class, 3)->create();
 
-        foreach (Category::all() as $category) {
-            for ($i=0; $i < 3; $i++) {
-                $category->appendNode(
-                    factory(Category::class)->create()
-                );
-            }
-        }
+        // Commented to disable sub categories.
+        // foreach (Category::all() as $category) {
+        //     for ($i=0; $i < 3; $i++) {
+        //         $category->appendNode(
+        //             factory(Category::class)->create()
+        //         );
+        //     }
+        // }
 
         factory(Product::class, 100)->create();
 

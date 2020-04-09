@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,12 +16,20 @@ use Illuminate\Support\Facades\Route;
 Route::post('auth/login', 'Auth\AuthController@login');
 Route::post('auth/register', 'Auth\AuthController@register');
 
-Route::group(['middleware' => 'api', 'prefix' => 'auth'], function ($router) {
-    // JWT auth uri's
-    Route::post('logout', 'Auth\AuthController@logout');
-    Route::post('refresh', 'Auth\AuthController@refresh');
-    Route::post('me', 'Auth\AuthController@me');
-});
-
 Route::resource('categories', 'Categories\CategoriesController');
 Route::resource('products', 'Products\ProductsController');
+
+Route::group(['middleware' => 'auth:api'], function ($router) {
+    Route::group(['prefix' => 'auth'], function () {
+        // JWT auth uri's
+        Route::post('logout', 'Auth\AuthController@logout');
+        Route::post('refresh', 'Auth\AuthController@refresh');
+        Route::post('me', 'Auth\AuthController@me');
+    });
+
+    Route::resource('cart', 'Cart\CartController', [
+        'parameters' => [
+            'cart' => 'productVariation'
+        ],
+    ]);
+});

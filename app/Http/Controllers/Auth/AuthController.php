@@ -19,7 +19,7 @@ class AuthController extends Controller
     {
         $credentials = request()->validate([
             'email' => 'required|max:255|email',
-            'password' => 'required|max:255',
+            'password' => 'required|min:6|max:255',
         ]);
 
         return $this->authenticate($credentials);
@@ -35,7 +35,7 @@ class AuthController extends Controller
         $data = request()->validate([
             'name' => 'required|max:255',
             'email' => 'required|max:255|email|unique:users',
-            'password' => 'required|max:255',
+            'password' => 'required|min:6|max:255',
         ]);
 
         User::create([

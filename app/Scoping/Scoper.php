@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Builder;
 use App\Scoping\Contracts\Scope;
 
-
 class Scoper
 {
     /**
