@@ -96,7 +96,7 @@ class Cart
      */
     public function sync(): void
     {
-        $this->user->cart->each(function ($product) {
+        $this->user->cart()->get()->each(function ($product) {
             $quantity = $product->minStock($product->pivot->quantity);
 
             if (!$this->changed) {
@@ -126,7 +126,7 @@ class Cart
      */
     public function subtotal(): Money
     {
-        $subtotal = $this->user->cart->sum(function ($product) {
+        $subtotal = $this->user->cart()->get()->sum(function ($product) {
             return $product->price->amount() * $product->pivot->quantity;
         });
 
