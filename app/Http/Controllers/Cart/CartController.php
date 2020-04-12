@@ -18,15 +18,12 @@ class CartController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Cart $cart)
     {
-        $user = auth()->user()->load(
-            'cart.product.variations.stock',
-            'cart.stock',
-        );
+        $cart->sync();
 
         return Respond::make(
-            new CartResource($user)
+            new CartResource(auth()->user())
         );
     }
 

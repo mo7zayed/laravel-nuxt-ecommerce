@@ -14,6 +14,13 @@ class Cart
     private $user;
 
     /**
+     * If the cart changed
+     *
+     * @var boolean
+     */
+    private $changed = false;
+
+    /**
      * Class intitilzation
      *
      * @param \App\Models\User $user
@@ -70,6 +77,70 @@ class Cart
     public function empty() : void
     {
         $this->user->cart()->detach();
+    }
+
+    /**
+     * Check ig the cart is empty
+     *
+     * @return boolean
+     */
+    public function isEmpty() : bool
+    {
+        return $this->user->cart->sum('pivot.quantity') == 0;
+    }
+
+    /**
+     * Sync the user cart items quantities based on the available items in the inventory.
+     *
+     * @return void
+     */
+    public function sync(): void
+    {
+        $this->user->cart->each(function ($product) {
+            $quantity = $product->minStock($product->pivot->quantity);
+
+            if (!$this->changed) {
+                $this->changed = $quantity != $product->pivot->quantity;
+            }
+
+            $product->pivot->update([
+                'quantity' => $quantity,
+            ]);
+        });
+    }
+
+    /**
+     * Check if the cart changed
+     *
+     * @return boolean
+     */
+    public function hasChanged()
+    {
+        return $this->changed;
+    }
+
+    /**
+     * Get cart subtotal
+     *
+     * @return void
+     */
+    public function subtotal(): Money
+    {
+        $subtotal = $this->user->cart->sum(function ($product) {
+            return $product->price->amount() * $product->pivot->quantity;
+        });
+
+        return new Money($subtotal);
+    }
+
+    /**
+     * Get cart total
+     *
+     * @return void
+     */
+    public function total(): Money
+    {
+        return $this->subtotal();
     }
 
     /**

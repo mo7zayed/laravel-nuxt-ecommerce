@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Traits\HasPrice;
+use App\Models\Traits\ProductLogic;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -10,7 +11,7 @@ use App\Scoping\Traits\Scopeable;
 
 class Product extends Model
 {
-    use Scopeable, HasPrice;
+    use Scopeable, HasPrice, ProductLogic;
 
     /**
      * The attributes that are mass assignable.
@@ -32,28 +33,6 @@ class Product extends Model
     public function getRouteKeyName()
     {
         return 'slug';
-    }
-
-    /**
-     * Check if the variation is in stock.
-     *
-     * @return bool
-     */
-    public function inStock(): bool
-    {
-        return $this->stockCount() > 0;
-    }
-
-    /**
-     * Get items remaining in the stock.
-     *
-     * @return integer
-     */
-    public function stockCount(): int
-    {
-        return $this->variations->sum(function ($variation) {
-            return $variation->stockCount();
-        });
     }
 
     /**

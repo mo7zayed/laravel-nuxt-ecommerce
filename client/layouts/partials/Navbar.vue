@@ -51,9 +51,9 @@
                         <a href="#" @click.prevent class="navbar-item">
                             Orders
                         </a>
-                        <a href="#" @click.prevent class="navbar-item">
-                            Cart (0)
-                        </a>
+                        <nuxt-link to="/cart" @click.prevent class="navbar-item">
+                            Cart ({{ cartCount }})
+                        </nuxt-link>
                         <div class="navbar-item has-dropdown is-hoverable">
                             <a href="#" @click.prevent class="navbar-link">
                                 {{ $auth.user.name }}
@@ -79,6 +79,7 @@
         computed: {
             ...mapGetters({
                 categories: 'categories',
+                cartCount: 'cart/count',
             }),
         },
         methods: {

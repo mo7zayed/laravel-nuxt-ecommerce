@@ -18,7 +18,7 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        $index = Product::withScopes($this->scopes())->paginate(20);
+        $index = Product::with('variations.type', 'variations.stock', 'variations.product')->withScopes($this->scopes())->paginate(20);
 
         return Respond::make(
             ProductIndexResource::collection($index)

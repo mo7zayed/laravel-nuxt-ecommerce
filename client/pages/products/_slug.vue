@@ -27,10 +27,10 @@
                         </section>
 
                         <section class="section">
-                            <ProductVariation 
-                                v-for="(variations, type) in product.variations" 
-                                :key="type" 
-                                :type="type" 
+                            <ProductVariation
+                                v-for="(variations, type) in product.variations"
+                                :key="type"
+                                :type="type"
                                 :variations="variations"
                                 v-model="form.variation"
                             />
@@ -43,7 +43,7 @@
                                     </div>
                                 </div>
                                 <div class="control">
-                                    <button type="button" class="button is-info">
+                                    <button type="button" @click="add()" class="button is-info">
                                         Add To Cart
                                     </button>
                                 </div>
@@ -58,7 +58,8 @@
 
 <script>
     import ProductVariation from '@/components/products/ProductVariation'
-    
+    import { mapActions } from 'vuex'
+
     export default {
         data () {
             return {
@@ -91,6 +92,17 @@
         },
         components: {
             ProductVariation,
+        },
+        methods: {
+            ...mapActions({
+                store: 'cart/store',
+            }),
+            add () {
+                this.store([{
+                    id: this.form.variation.id,
+                    quantity: this.form.quantity,
+                }])
+            },
         },
         async asyncData({ params, app }) {
             let response = await app.$axios.$get(`products/${params.slug}`)

@@ -5,6 +5,7 @@ namespace App\Models;
 use AjCastro\EagerLoadPivotRelations\EagerLoadPivotTrait;
 use App\Cart\Money;
 use App\Models\Traits\HasPrice;
+use App\Models\Traits\ProductVariationLogic;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -13,7 +14,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class ProductVariation extends Model
 {
-    use HasPrice;
+    use HasPrice, ProductVariationLogic;
 
     /**
      * The attributes that are mass assignable.
@@ -40,36 +41,6 @@ class ProductVariation extends Model
         }
 
         return new Money($value);
-    }
-
-    /**
-     * Is price varies
-     *
-     * @return boolean
-     */
-    public function isPriceVaries() : bool
-    {
-        return $this->price->amount() !== $this->product->price->amount();
-    }
-
-    /**
-     * Check if the variation is in stock.
-     *
-     * @return bool
-     */
-    public function inStock() : bool
-    {
-        return $this->stockCount() > 0;
-    }
-
-    /**
-     * Get items remaining in the stock.
-     *
-     * @return integer
-     */
-    public function stockCount() : int
-    {
-        return $this->stock->sum('pivot.stock');
     }
 
     /**
