@@ -17,24 +17,14 @@ class ApplicationSeeder extends Seeder
     {
         factory(Category::class, 3)->create();
 
-        // Commented to disable sub categories.
-        // foreach (Category::all() as $category) {
-        //     for ($i=0; $i < 3; $i++) {
-        //         $category->appendNode(
-        //             factory(Category::class)->create()
-        //         );
-        //     }
-        // }
-
         factory(Product::class, 100)->create();
 
         factory(ProductVariationType::class, 3)->create();
 
-        foreach (Product::all() as $key => $product) {
+        foreach (Product::all() as $product) {
             $product->categories()->attach(
-                Category::select('id')->inRandomOrder()->take(3)->get()->pluck('id')->toArray()
+                Category::select('id')->inRandomOrder()->take(1)->get()->pluck('id')->toArray()
             );
-
 
             factory(ProductVariation::class)->create([
                 'name' => 'v1',

@@ -1,12 +1,12 @@
 <template>
   <section>
-      <div class="container">
-          Home
-      </div>
+    <div class="container">
+      Home
+    </div>
   </section>
 </template>
 
 <script>
-export default {
-}
+  export default {}
+
 </script>

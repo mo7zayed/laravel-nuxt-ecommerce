@@ -1,16 +1,16 @@
 <template>
-    <div>
-        <Navbar />
-        <nuxt />
-    </div>
+  <div>
+    <Navbar />
+    <nuxt />
+  </div>
 </template>
 
 <script>
-import Navbar from '@/layouts/partials/Navbar'
+  import Navbar from '@/layouts/partials/Navbar'
 
-export default {
+  export default {
     components: {
-        Navbar,
+      Navbar,
     },
-}
+  }
 </script>

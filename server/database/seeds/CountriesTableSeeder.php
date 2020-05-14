@@ -2,6 +2,7 @@
 
 use App\Models\Country;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class CountriesTableSeeder extends Seeder
 {
@@ -12,7 +13,26 @@ class CountriesTableSeeder extends Seeder
      */
     public function run()
     {
-        $countries = [
+        $date = date('Y-m-d H:i:s');
+
+        foreach ($this->getCountries() as $code => $name) {
+            DB::table('countries')->insert([
+                'name' => $name,
+                'code' => $code,
+                'created_at' => $date,
+                'updated_at' => $date,
+            ]);
+        }
+    }
+
+    /**
+     * Get Countries.
+     *
+     * @return array
+     */
+    public function getCountries(): array
+    {
+        return [
             "AF" => "Afghanistan",
             "AL" => "Albania",
             "DZ" => "Algeria",
@@ -253,12 +273,5 @@ class CountriesTableSeeder extends Seeder
             "ZM" => "Zambia",
             "ZW" => "Zimbabwe"
         ];
-
-        foreach ($countries as $code => $name) {
-            Country::create([
-                'name' => $name,
-                'code' => $code,
-            ]);
-        }
     }
 }

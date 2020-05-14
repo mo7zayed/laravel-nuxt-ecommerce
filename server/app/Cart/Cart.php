@@ -114,7 +114,7 @@ class Cart
      *
      * @return boolean
      */
-    public function hasChanged()
+    public function hasChanged(): bool
     {
         return $this->changed;
     }

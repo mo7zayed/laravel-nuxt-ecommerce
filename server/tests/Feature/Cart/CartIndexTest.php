@@ -24,7 +24,8 @@ class CartIndexTest extends TestCase
         $user = factory(User::class)->create();
 
         $user->cart()->attach(
-            $product = factory(ProductVariation::class)->create(), [
+            $product = factory(ProductVariation::class)->create(),
+            [
                 'quantity' => 1
             ]
         );
@@ -52,19 +53,25 @@ class CartIndexTest extends TestCase
         $user = factory(User::class)->create();
 
         $user->cart()->attach(
-            $product = factory(ProductVariation::class)->create(), [
+            $product = factory(ProductVariation::class)->create(),
+            [
             'quantity' => 0
-        ]);
+        ]
+        );
 
         $user->cart()->attach(
-            $product = factory(ProductVariation::class)->create(), [
+            $product = factory(ProductVariation::class)->create(),
+            [
             'quantity' => 0
-        ]);
+        ]
+        );
 
         $user->cart()->attach(
-            $product = factory(ProductVariation::class)->create(), [
+            $product = factory(ProductVariation::class)->create(),
+            [
             'quantity' => 0
-        ]);
+        ]
+        );
 
         $response = $this->jsonAs($user, 'GET', 'api/cart');
 
@@ -80,9 +87,11 @@ class CartIndexTest extends TestCase
         $user->cart()->attach(
             $product = factory(ProductVariation::class)->create([
                 'price' => 1000
-            ]), [
+            ]),
+            [
             'quantity' => 1
-        ]);
+        ]
+        );
 
         $response = $this->jsonAs($user, 'GET', 'api/cart');
 
@@ -96,9 +105,11 @@ class CartIndexTest extends TestCase
         $user = factory(User::class)->create();
 
         $user->cart()->attach(
-            $product = factory(ProductVariation::class)->create(), [
+            $product = factory(ProductVariation::class)->create(),
+            [
             'quantity' => 10
-        ]);
+        ]
+        );
 
         $response = $this->jsonAs($user, 'GET', 'api/cart');
 
