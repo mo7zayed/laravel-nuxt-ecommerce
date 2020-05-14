@@ -5,6 +5,7 @@ use App\Models\Product;
 use App\Models\ProductVariationType;
 use App\Models\Category;
 use App\Models\ProductVariation;
+use App\Models\User;
 
 class ApplicationSeeder extends Seeder
 {

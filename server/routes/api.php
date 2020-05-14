@@ -16,10 +16,12 @@ use Illuminate\Support\Facades\Route;
 Route::post('auth/login', 'Auth\AuthController@login');
 Route::post('auth/register', 'Auth\AuthController@register');
 
-Route::resource('categories', 'Categories\CategoriesController');
-Route::resource('products', 'Products\ProductsController');
+Route::apiResource('categories', 'Categories\CategoriesController');
+Route::apiResource('products', 'Products\ProductsController');
 
-Route::group(['middleware' => 'auth:api'], function ($router) {
+Route::group(['middleware' => 'auth:api'], function () {
+    Route::apiResource('addresses', 'Addresses\AddressesController');
+
     Route::group(['prefix' => 'auth'], function () {
         // JWT auth uri's
         Route::post('logout', 'Auth\AuthController@logout');

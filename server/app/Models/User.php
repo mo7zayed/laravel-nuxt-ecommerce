@@ -3,9 +3,10 @@
 namespace App\Models;
 
 use Tymon\JWTAuth\Contracts\JWTSubject;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class User extends Authenticatable implements JWTSubject
 {
@@ -71,5 +72,15 @@ class User extends Authenticatable implements JWTSubject
             'user_id',
             'product_variation_id'
         )->withPivot('quantity')->withTimestamps();
+    }
+
+    /**
+     * Addresses Relation
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function addresses(): HasMany
+    {
+        return $this->hasMany(Address::class);
     }
 }
